@@ -65,6 +65,15 @@ class Dog
       new_dog
   end
   
+  def self.find_by_name(name)
+    sql = <<-SQL
+      SELECT * FROM dogs 
+      WHERE name = ? LIMIT 1;
+    SQL
+    DB[:conn].execute(sql, self.name).map do |row|
+    end
+  end
+  
   def update
     sql = <<-SQL
       UPDATE dogs SET name = ?, breed = ?
